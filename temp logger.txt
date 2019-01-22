@@ -1,0 +1,2 @@
+do this course:
+https://projects.raspberrypi.org/en/projects/sense-hat-data-logger
