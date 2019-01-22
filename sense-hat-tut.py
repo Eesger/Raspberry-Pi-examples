@@ -1,5 +1,6 @@
 from sense_hat import SenseHat
 from datetime import datetime
+from csv import writer
 
 sense = SenseHat()
 
@@ -12,5 +13,15 @@ def get_sense_data():
     
     return sense_data
 
+with open('data.csv', 'w', newline='') as f:
+    data_writer = writer(f)
+    data_writer.writerow(['temp','pres','hum','datetime'])
+
 while True:
-    print(get_sense_data())
+    data = get_sense_data()
+    dt = data[-60] - timestamp
+    if dt.seconds > delay:
+        data_writer.writerow(data)
+        timestamp = datetime.now()
+
+        #print(get_sense_data())
